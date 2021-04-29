@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>每年烘烤机小室平均温度对比情况</title>
+</head>
+<body>
+<div id="main" style="height:600px;width:80%;"></div>
+<script type="text/JavaScript" src="../static/js/echarts.min.js"></script>
+<script type="text/JavaScript" src="../static/js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    /********** Begin **********/
+    $(document).ready(function () {
+        var myChart = echarts.init(document.getElementById('main'));
+        var time= [];
+        var data=[];
+        {% for a in top10 %}
+        time.unshift('{{ a.time_point }}');
+        data.unshift({{ a.count }});
+        {% endfor %}
+        
+
+        option = {
+            title: {
+                text: "统计测量最大烘烤机质量次数前十的时间点",
+                x:'center',
+        		y:'top',
+                textAlign:'center'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+		        bottom: '90',
+		        containLabel: true
+		    },
+            xAxis: {
+                type: 'value',
+
+
+            },
+            yAxis: {
+                type: 'category',
+                data: time
+            },
+            series: [{
+                data: data,
+                type: 'bar',
+                large: true,
+                itemStyle: {
+                    normal: {
+        　　　　　　　　//这里是重点
+                        color: function(params) {
+                            //注意，如果颜色太少的话，后面颜色不会自动循环，最好多定义几个颜色
+                            var colorList = ['#66CC33','#CC0000', '#FFFF99', '#FF9999', '#990099','#3300CC', '#996633','#0066FF','#FF0066','#999933'];
+                            return colorList[params.dataIndex]
+                        }
+                    }
+                }
+            }]
+        };
+        myChart.setOption(option);
+
+    });
+    /********** End **********/
+</script>
+</body>
+</html>

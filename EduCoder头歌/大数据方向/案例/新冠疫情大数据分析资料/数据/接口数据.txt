@@ -1,0 +1,48 @@
+全球：
+
+全球各国统计总量（不含中国）https://api.inews.qq.com/newsqa/v1/automation/foreign/country/ranklist （腾讯）
+
+全球和中国统计总量 https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=VaccineTopData （腾讯）
+
+全球每日清单 https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoGlobalDailyList （腾讯）
+
+国家每日新增 https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoCountryConfirmAdd （腾讯）
+
+全球统计 https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoGlobalStatis（腾讯）
+
+全球各国当天数据：https://view.inews.qq.com/g2/getOnsInfo?name=disease_foreign （腾讯）
+
+全球疫情数据（2020.1.21-2021.04.24）https://file1.dxycdn.com/2021/0425/862/9475748356761347743-135.json?t=26988637 （丁香医生）
+
+https://file1.dxycdn.com/2020/0315/559/3402160538577857305-135.json?t=26988637
+
+
+
+中国：
+
+中国当天疫情数据 https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5 （腾讯）
+
+中国疫情数据（2020.1.19-2021.4.24）https://file1.dxycdn.com/2021/0425/933/5610584878367447743-135.json?t=26988637 （丁香医生）
+
+各省所有数据 https://api.inews.qq.com/newsqa/v1/query/pubished/daily/list?province=%E4%B8%8A%E6%B5%B7& （腾讯）
+（'香港','上海','云南','台湾','广东','福建','四川','陕西','海南','浙江','北京','江苏','天津','山东','山西','湖北','河南','重庆','广西','湖南','内蒙古','甘肃','贵州','黑龙江','宁夏','辽宁','安徽','河北','江西','澳门','新疆','吉林','青海','西藏'）
+
+https://api.inews.qq.com/newsqa/v1/query/pubished/daily/list?province=%E5%B1%B1%E4%B8%9C&city=%E6%B5%8E%E5%8D%97&
+
+美国：
+中国疫情数据（2020.1.23-2021.4.24）https://file1.dxycdn.com/2020/0315/553/3402160512808052518-135.json?t=26988637 （丁香医生）
+
+
+巴西：
+巴西疫情数据（2020.02.27-2021.4.24） https://file1.dxycdn.com/2020/0315/559/3402160538577857305-135.json?t=26988637（丁香医生）
+
+
+法国：
+法国疫情数据（2020.01.25-2021.4.24）https://file1.dxycdn.com/2020/0315/929/3402160538577857318-135.json?t=26988637（丁香医生）
+
+
+
+
+
+
+

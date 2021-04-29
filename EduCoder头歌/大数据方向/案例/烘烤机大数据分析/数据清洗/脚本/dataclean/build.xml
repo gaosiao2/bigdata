@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="MapReduce" default="jar" basedir=".">
+
+<property name="src" value="src" />
+<property name="dest" value="classes"/>
+<target name="init" >
+<delete dir="./classes"/>
+<mkdir dir="${dest}"/>
+</target>
+
+
+<target name="compile" depends="init">
+<javac encoding="utf-8" srcdir="./" destdir="./classes" includeAntRuntime="false" classpath="/usr/local/hadoop/share/hadoop/common/hadoop-common-2.7.4.jar:/usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.7.4.jar:/usr/local/hadoop/share/hadoop/common/lib/commons-cli-1.2.jar:./lib/mysql-connector-java-5.1.2.jar"/>
+</target>
+
+<target name="jar" depends="compile">
+<jar destfile="MapReduce.jar" basedir="./classes">
+<manifest>
+<attribute name="Main-class" value="roaster.mapreduce.RoasterJob" />
+</manifest>
+</jar>
+</target>
+</project>

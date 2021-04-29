@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>每年烘烤机小室平均温度对比情况</title>
+</head>
+<body>
+<div id="main" style="height:600px;width:80%;"></div>
+<script type="text/JavaScript" src="../static/js/echarts.min.js"></script>
+<script type="text/JavaScript" src="../static/js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    /********** Begin **********/
+    $(document).ready(function () {
+        var myChart = echarts.init(document.getElementById('main'));
+        var year=[]
+
+        {% for a in year %}
+        year.push('{{ a }}');
+        {% endfor %}
+
+		option = {
+		  // 三个图表位置配置
+		  grid: [{
+		    left: '4%',
+		    height: "75%",
+		    width: "25%"
+		  }, {
+		    left: '37%',
+		    height: "75%",
+		    width: "25%"
+		  }, {
+		    left: '70%',
+		    height: "75%",
+		    width: "25%"
+		  }],
+		  // 三个图表title配置
+		  title: [{
+		    text: '温度与质量影响分析图',
+		    x: '10%',
+		    y: '3%',
+		    textStyle: {
+		      fontSize: 18,
+		      fontWeight: 'normal',
+		      color: '#465166'
+		    },
+
+		  }, {
+		    text: '原料高度与质量影响分析图',
+		    x: '43%',
+		    y: '3%',
+		    textStyle: {
+		      fontSize: 18,
+		      fontWeight: 'normal',
+		      color: '#465166'
+		    },
+
+		  }, {
+		    text: '原料湿度与质量影响分析图',
+		    x: '75%',
+		    y: '3%',
+		    textStyle: {
+		      fontSize: 18,
+		      fontWeight: 'normal',
+		      color: '#465166'
+		    },
+
+		  }],
+		  tooltip: {
+		    trigger: 'axis',
+		    axisPointer: {
+		      type: 'shadow',
+		    }
+		  },
+		  // x轴配置
+		  xAxis: [{
+		    gridIndex: 0,
+		    type: 'category',
+		    axisTick: {
+		      alignWithLabel: true
+		    },
+		    data: year,
+
+		  },
+		    {
+			    type: 'category',
+			    gridIndex: 1, //对应前面grid的索引位置（第2个）
+			    axisTick: {
+			      alignWithLabel: true
+			    },
+			    data: year,
+
+
+		    },
+		    {
+		      type: 'category',
+		      gridIndex: 2, //对应前面grid的索引位置（第3个）
+		      axisTick: {
+		        alignWithLabel: true
+		      },
+		      data: year,
+
+		    }
+		  ],
+		  // y轴配置
+		  yAxis: [{
+		    gridIndex: 0,
+		    type: 'value',
+		    max:1.5,
+		    min:0
+		  }, {
+		    gridIndex: 1,
+		    type: 'value',
+		    max:1.5,
+		    min:0
+		  },
+		    {
+		      gridIndex: 2,
+		      type: 'value',
+		      max:1.5,
+		      min:0
+		    }
+		  ],
+		  series: [{
+		    xAxisIndex: 0,
+		    yAxisIndex: 0,
+		    type: 'bar',
+		    barWidth: '25px',
+		    name: '温度',
+		    itemStyle: {
+		      color: new echarts.graphic.LinearGradient(
+		        0, 0, 1, 0,
+		        [
+		          {offset: 0, color: '#f77e55'},
+		          {offset: 0.5, color: '#ff9f7f'},
+		          {offset: 1, color: '#ff9f7f'}
+		        ]
+		      )
+		    },
+		    emphasis: {
+		      itemStyle: {
+		        color: new echarts.graphic.LinearGradient(
+		          0, 0, 1, 0,
+		          [
+		            {offset: 0, color: '#ff9f7f'},
+		            {offset: 0.5, color: '#ff9f7f'},
+		            {offset: 1, color: '#f77e55'}
+		          ]
+		        )
+		      }
+		    },
+		    data: {{ avg_T_list_ }},
+		  },
+
+		    {
+		      xAxisIndex: 1,
+		      yAxisIndex: 1,
+		      type: 'bar',
+		      barWidth: '25px',
+		      itemStyle: {
+		        color: new echarts.graphic.LinearGradient(
+		          0, 0, 1, 0,
+		          [
+		            {offset: 0, color: '#f5587e'},
+		            {offset: 0.5, color: '#fb7293'},
+		            {offset: 1, color: '#fb7293'}
+		          ]
+		        )
+		      },
+		      emphasis: {
+		        itemStyle: {
+		          color: new echarts.graphic.LinearGradient(
+		            0, 0, 1, 0,
+		            [
+		              {offset: 0, color: '#fb7293'},
+		              {offset: 0.5, color: '#fb7293'},
+		              {offset: 1, color: '#f5587e'}
+		            ]
+		          )
+		        }
+		      },
+		      name: '原料高度',
+		      data: {{ avg_H_list_ }}
+		    },
+
+		    {
+		      xAxisIndex: 2,
+		      yAxisIndex: 2,
+		      type: 'bar',
+		      barWidth: '25px',
+		      itemStyle: {
+		        color: new echarts.graphic.LinearGradient(
+		          0, 0, 1, 0,
+		          [
+		            {offset: 0, color: '#e1a1f3'},
+		            {offset: 0.5, color: '#e7bcf3'},
+		            {offset: 1, color: '#e7bcf3'}
+		          ]
+		        )
+		      },
+		      emphasis: {
+		        itemStyle: {
+		          color: new echarts.graphic.LinearGradient(
+		            0, 0, 1, 0,
+		            [
+		              {offset: 0, color: '#e7bcf3'},
+		              {offset: 0.5, color: '#e7bcf3'},
+		              {offset: 1, color: '#e1a1f3'}
+		            ]
+		          )
+		        }
+		      },
+		      name: '原料湿度',
+		      data: {{ avg_AH_list_}}
+		    },
+		    {
+			xAxisIndex: 0,
+		    yAxisIndex: 0,
+		    type: 'line',
+		    name: '质量',
+		    data:{{ avg_quality_list_}}
+			},{
+			xAxisIndex: 1,
+		    yAxisIndex: 1,
+		    type: 'line',
+		    name: '质量',
+		    data:{{ avg_quality_list_}}
+			},{
+			xAxisIndex: 2,
+		    yAxisIndex: 2,
+		    type: 'line',
+		    name: '质量',
+		    data:{{ avg_quality_list_}}
+			}
+		  ]
+		};
+
+
+        myChart.setOption(option);
+
+    });
+</script>
+</body>
+</html>

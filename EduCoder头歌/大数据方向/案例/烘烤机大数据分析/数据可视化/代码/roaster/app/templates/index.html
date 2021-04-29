@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>每年烘烤机小室平均温度对比情况</title>
+</head>
+<body>
+<div id="main" style="height:600px;width:80%;"></div>
+<script type="text/JavaScript" src="../static/js/echarts.min.js"></script>
+<script type="text/JavaScript" src="../static/js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    /********** Begin **********/
+    $(document).ready(function () {
+        var myChart = echarts.init(document.getElementById('main'));
+        var date1= [];
+        var data=[];
+        {% for a in month_avg_quality %}
+        date1.push('{{ a.dates }}');
+        data.push({{ a.avg_quality }});
+        {% endfor %}
+
+        option = {
+            title: {
+                text: "每月烘烤机总质量对比情况",
+                left: 10
+            },
+             toolbox: {
+                feature: {
+                    dataZoom: {
+                        yAxisIndex: false
+                    },
+                    saveAsImage: {
+                        pixelRatio: 2
+                    }
+                }
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            xAxis: {
+                type: 'category',
+                data: date1,
+                silent: false,
+                splitLine: {
+                    show: false
+                },
+                splitArea: {
+                    show: false
+                }
+            },
+            yAxis: {
+                type: 'value',
+                splitArea: {
+                show: false
+                }
+            },
+            grid: {right:10 ,bottom: 90},
+            dataZoom: [{
+                type: 'inside'
+            }, {
+                type: 'slider'
+            }],
+            series: [{
+                data: data,
+                type: 'bar',
+                large: true
+            }]
+        };
+        myChart.setOption(option);
+
+    });
+    /********** End **********/
+</script>
+</body>
+</html>
